@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/fragment/head"></head>
+<body class="d-flex flex-column h-100">
+    <nav th:replace="/fragment/header :: nav-admin"></nav>
+        <div class="container">
+
+            <h1 class="display-2">Add A pages</h1>
+            <a href="/admin/pages/" class="btn btn-primary mb-5">Back to pages</a>
+
+            <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}"></div>
+
+            <form method="post" th:object="${page}" th:action="@{/admin/pages/add}">
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                    there are errors
+                </div>
+
+                <div class="from-group">
+                    <label for="">Title</label>
+                    <input type="text" class="form-control" th:field="*{title}" placeholder="title" required>
+                    <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+                </div>
+
+                <div class="from-group">
+                    <label for="">Slug</label>
+                    <input type="text" class="form-control" th:field="*{slug}" placeholder="slug">
+                </div>
+
+                <div class="form-group">
+                    <label for="">Content</label>
+                    <textarea th:field="*{content}" rows="10" class="form-control" placeholder="content" required></textarea>
+                    <span class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+                </div>
+
+                <button class="btn btn-danger mb-5">Add</button>
+            </form>
+
+        </div>
+
+    <div th:replace="/fragment/footer"></div>
+
+</body>
+</html>

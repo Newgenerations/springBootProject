@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="/fragment/head"> </head>
+<body>
+
+
+    <nav th:replace="fragment/header :: nav-front"></nav>
+    
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div th:replace="/fragment/categories"></div>
+            <div class="col"></div>
+            <div class="col-8">
+                
+                <h2 class="display mb-5" th:text="${categoryName}"></h2>
+
+                <div class="row">
+                    <div class="col-4" th:each="product: ${products}">
+                        <p>
+                            <img style="width: 200px;" th:src="@{'/media/' + ${product.image}}">
+                        </p>
+                        <h4 th:text="${product.name}"></h4>
+                        <div class="desc" th:utext="${product.description}"></div>
+                        <p th:text="'$' + ${product.price}"></p>
+                        <div>
+                            <p>
+                                <a href="#">Add to cart</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div th:replace="/fragment/footer"></div>
+
+
+</body>
+</html>
